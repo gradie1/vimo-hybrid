@@ -1,0 +1,62 @@
+<ion-header >
+
+  <ion-navbar color="transparent">
+    <ion-title>Prix</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<div class="content primary flex column justify-center align-center">
+
+	<h1 class="text EBold">
+		Prix {{currency}}
+	</h1>
+
+		
+		
+		<div class="flex justify-center align-center">         
+			
+			<input type="number" class="price shadow-2" [(ngModel)]="price" placeholder="|">
+
+              <div style="position:relative" class="white shadow-2">
+
+                <ion-select [(ngModel)]="currency">
+                <ion-option value="$" selected>
+                $
+                <ion-icon name="ios-arrow-down-outline"></ion-icon>
+                </ion-option>
+                <ion-option value="Fc" >
+                Fc
+                <ion-icon name="ios-arrow-down-outline"></ion-icon>
+                </ion-option>
+                <ion-option value="Fbu" >
+                FBu
+                <ion-icon name="ios-arrow-down-outline"></ion-icon>
+                </ion-option>
+                <ion-option value="Frw" >
+                FRw
+                <ion-icon name="ios-arrow-down-outline"></ion-icon>
+                </ion-option>
+                <ion-option value="Ush" >
+                Ush
+                <ion-icon name="ios-arrow-down-outline"></ion-icon>
+                </ion-option>
+              </ion-select>
+
+              </div>
+
+        </div>
+
+
+
+</div>
+
+
+
+<ion-footer>
+
+  <div class="btn btn-medium white text-primary " (click)="next()">
+    CONTINUER
+  </div>
+
+</ion-footer>

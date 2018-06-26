@@ -1,0 +1,82 @@
+
+<ion-header >
+
+  <ion-navbar color="primary">
+    <ion-title>Mes Favoris</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+	<!-- <div class="flex justify-between align-center" style="padding:15px 10px 5px;color:#555">
+          <span>Articles</span>
+          <span>0 </span>
+        </div> -->
+
+
+     <div class="items">
+
+      <div class="flex justify-center"
+         style="padding:20px 0"
+         *ngIf="!items">
+
+      <ion-spinner name="bubbles" color="dark"></ion-spinner>
+
+    </div>
+
+      <!-- <div class="notice light" *ngIf="!hasLike" >
+        Les articles que vous aimez s'affichent ici.
+      </div> -->
+
+
+     	<div  *ngFor="let item of items | async">
+
+     		<div class="item flex justify-start" *ngIf="isFav(item.likes)">
+
+          <div 
+          class="img cover"
+          [ngStyle]="{ 'background-image': 'url(' + item.images[0] + ')'}"
+          (click)="openProduct(item)">
+
+        </div>
+
+        <div class="info flex column justify-between">
+
+          <div class="">
+            <div class="name " (click)="openProduct(item)">
+              {{item.name}}
+            </div>
+
+            <div class="distance" (click)="openProduct(item)">
+              {{item.distance}}
+            </div>
+          </div>
+
+          <div class="flex justify-between align-end" style="padding-top:5px;" >
+
+            <div class="price bold" ion-text color="primary" (click)="openProduct(item)">
+              {{item.price}}{{item.currency}}
+            </div>
+
+            <img src="assets/imgs/heart.png" width="20px" height="20px" (click)="unlike(item)"/>
+
+          </div>
+
+        </div>
+
+        </div>
+
+
+     	</div>
+
+
+
+     </div>
+
+
+
+
+
+</ion-content>

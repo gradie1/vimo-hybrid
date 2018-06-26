@@ -1,0 +1,41 @@
+page-search {
+	background-color:#f0f0f0;
+	.items{
+		background-color:#f0f0f0;
+	}
+
+	.items .img{
+		width:32vw;
+		height:23vw;
+		background-color:#f0f0f0;
+	}
+
+	.item{
+		padding:8px;
+		margin-bottom:1px;
+		background-color:#fff;
+	}
+
+	.item .info{
+		width:60vw;
+		padding-left: 10px;
+	}
+
+	.items .name{
+		padding: 0 0px 5px;
+		font-size:1em;
+		font-weight:600;
+	}
+
+	.item .price{
+		font-size:1.2em;
+	}
+
+	.notice{
+		padding:20px;
+		text-align:center;
+		font-size:1.2em;
+		background-color:#fff;
+		color:#747373;
+	}
+}

@@ -1,0 +1,100 @@
+<!--
+  Generated template for the ProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+
+  <ion-navbar color="primary">
+    <ion-title>Article</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+
+<div class="content">
+
+	<!-- ARTICLE IMAGES -->
+	<ion-slides pager>
+
+	  <ion-slide *ngFor = "let image of item.images">
+	    
+	  	<div class="img cover"	  		 
+	  		 [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
+	  	</div>
+
+	  </ion-slide>
+
+	</ion-slides>
+
+
+
+	<div class="details">
+
+		<div class="info">
+
+				<!-- Article name -->
+	 <div class="name bold">
+		{{item.name}}
+	</div>
+
+	<div class="distance light">
+		{{item.distance}}
+	</div>
+	
+	<div class="flex justify-between align-center">
+
+		<div class="price text-primary bold" >
+			{{item.price}} {{item.currency}}
+		</div>
+		
+		<img *ngIf="liked" src="assets/imgs/heart.png" width="25px" height="25px" (click)="unlike($event,item.key)"/>
+
+		<img *ngIf="!liked" src="assets/imgs/heart-outline.png" width="25px" height="25px" (click)="like($event,item.key)"/>
+
+	</div>
+
+	<div class="description ">
+		{{item.description}}
+	</div> 
+
+	<!-- Owner -->
+	<div class="owner flex justify-between align-end ">
+
+		<div class="flex justify-start align-center">
+			<div class="owner-img cover"
+			     [ngStyle]="{ 'background-image': 'url(' + (owner | async)?.profilImage + ')'}"
+			></div>
+			<div class="owner-name ">{{ (owner | async)?.name }}</div>
+		</div>
+
+		<input #phone style="display:none" value="{{(owner | async)?.phone}}">
+
+		<div class="checkout btn btn-small primary text-white"
+			 *ngIf="(owner | async)?.phone" 
+			 style="margin-right:0"
+			 (click)="contact(phone.value)">
+			 <ion-icon name="basket" ion-text color="light"></ion-icon>
+			 Acheter
+			</div>
+
+	</div>
+
+		</div>
+
+	</div>
+
+
+
+
+</div>
+
+
+
+
+</ion-content>

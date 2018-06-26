@@ -1,0 +1,48 @@
+<!--
+  Generated template for the PublishPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+
+  <ion-navbar color="primary">
+    <ion-title>Publier</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <div class="padding-top:20px;">
+
+  <ion-item >
+     <ion-label floating>Nom du produit </ion-label>
+     <ion-input type="text" [(ngModel)]="name"></ion-input>
+   </ion-item>
+
+  <ion-item>
+     <ion-label floating>Description (facultative)</ion-label>
+     <ion-textarea type="text" [(ngModel)]="description"></ion-textarea>
+   </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <ion-icon ion-text color="primary" name="map"></ion-icon>
+      Géolocalisation
+    </ion-label>
+    <ion-toggle item-right checked="false" [(ngModel)]="geolocation"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <div class="btn btn-full primary text-white " (click)="publish()">
+      PUBLIER
+    </div>
+  </ion-item>
+
+    </div>
+
+
+</ion-content>

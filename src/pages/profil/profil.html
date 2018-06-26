@@ -1,0 +1,114 @@
+<ion-header no-border>
+
+  <ion-navbar >
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding >
+
+	<div class="top flex justify-between align-center" >
+
+		<div class="">
+
+			<div class="name bold">
+				{{ (user | async)?.name | titlecase}} 
+				<ion-spinner *ngIf="!user" name="bubbles"></ion-spinner> 
+			</div>
+
+			<span>
+				{{ (user | async)?.email }}
+				
+			</span>
+
+		</div>
+
+		<div class="img" 
+			 [ngStyle]="{ 'background-image': 'url(' + (user | async)?.profilImage + ')'}"
+			 (click)="selectImage()">
+
+		</div>
+
+	</div>
+
+
+	<ion-list>
+		
+
+		<div class="item bold flex justify-between align-center"
+		(click)="edit('name')">
+
+			<span style="padding-left:5px;color:#222;" 
+				  >
+				{{ (user | async)?.name | titlecase}}
+				<ion-spinner *ngIf="!user" name="bubbles"></ion-spinner>
+			</span>
+
+			<span style="padding-right:5px;color:#222;">
+				<ion-icon  name="ios-contact" ></ion-icon>
+			</span>
+
+		</div>
+
+
+		<div class="item bold flex justify-between align-center"
+		(click)="edit('phone')">
+
+			<div style="padding-left:5px;color:#222;"
+				 >
+				{{ (user | async)?.phone }}
+				<ion-spinner *ngIf="!user" name="bubbles"></ion-spinner>
+			</div>
+
+			<span style="padding-right:5px;color:#222;">
+				<ion-icon  name="call" ></ion-icon>
+			</span>
+
+		</div>
+
+
+		<!-- <div class="item bold flex justify-between align-center">
+
+			<div style="padding-left:5px;color:#222;"
+				 (click)="edit('email')">
+				{{ (user | async)?.email }}
+				<ion-spinner *ngIf="!user" name="bubbles"></ion-spinner>
+			</div>
+
+			<span style="padding-right:5px;color:#222;">
+				<ion-icon  name="mail" ></ion-icon>
+			</span>
+
+		</div> -->
+
+
+		<div class="item bold flex justify-between align-center"
+		(click)="resetPassword()">
+
+			<div style="padding-left:5px;color:#222;"			
+			>
+			Changer le mot de passe
+			</div>
+
+			<span style="padding-right:5px;color:#222;">
+				<ion-icon  name="lock" ></ion-icon>
+			</span>
+
+		</div>
+
+		<!-- <div class="item bold flex justify-between align-center">
+
+			<div style="padding-left:5px;color:#222;">Gestion du compte</div>
+
+			<span style="padding-right:5px;color:#222;">
+				<ion-icon  name="lock" ></ion-icon>
+			</span>
+
+		</div> -->
+
+
+	</ion-list>
+
+
+</ion-content>

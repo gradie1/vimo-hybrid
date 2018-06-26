@@ -1,0 +1,43 @@
+page-add-price {
+
+	.content{
+		height:100%;
+	}
+
+	.text{
+		font-size:4em;
+		color:#fff;
+		padding:10px;
+	}
+
+	.buttons{
+		padding:10px;
+	}
+
+	.buttons div{
+		margin: 20px 0;
+	}
+
+	.currency{
+        padding: 10px 0;
+        border:none;
+        text-align: right;
+        outline: none;
+        font-size: 1.5em;
+        color:#fff;
+        background:transparent;
+    }
+
+    .price{
+        width: 80%;
+        letter-spacing: 0.2em;
+        padding: 10px 10px;
+        border:none;
+        text-align: center;
+        outline: none;
+        font-size: 1.2em;
+        color:#555;
+    }
+
+
+}

@@ -1,0 +1,85 @@
+<ion-header no-border >
+
+  <ion-navbar >
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<div class="app flex wrap justify-center align-end" style="padding-top:40px" padding>
+
+
+
+<div class="middle flex column justify-end align-center" >
+
+	<!-- <div class="block" style="color:#747373">
+		Connexion
+	</div> -->
+
+	<form  [formGroup]="form">
+
+		<ion-item >
+			<ion-label floating>
+			<ion-icon name="contact"></ion-icon>
+			Prenom
+			</ion-label>
+			<ion-input type="text" formControlName="name"></ion-input>
+		</ion-item>
+
+		<ion-item >
+			<ion-label floating>
+			<ion-icon name="call"></ion-icon>
+			Telephone
+			</ion-label>
+			<ion-input type="tel" formControlName="phone"></ion-input>
+		</ion-item>				
+
+		<ion-item >
+			<ion-label floating>
+			<ion-icon name="mail"></ion-icon>
+			Email
+			</ion-label>
+			<ion-input type="email" formControlName="email"></ion-input>
+		</ion-item>
+
+		<ion-item >
+			<ion-label floating>
+			<ion-icon name="lock"></ion-icon>
+			Mot de passe
+			</ion-label>
+			<ion-input type="password" formControlName="password"></ion-input>
+		</ion-item>
+
+		<ion-item >
+			<ion-label floating>
+			<ion-icon name="lock"></ion-icon>
+			Confirmez
+			</ion-label>
+			<ion-input type="password" formControlName="password2"></ion-input>
+		</ion-item>
+
+		<div class="block" ion-text style="text-align:center">
+			En vous inscrivant vous acceptez les 
+			<span style="color:#4f58c3"> termes et conditions</span>
+		</div>
+
+		<button  class="btn btn-full btn-gradient text-white shadow-deep" 
+				 style="margin-top:10px;"
+				 (click)="signUp()">INSCRIPTION</button>
+
+	</form>
+
+</div>
+
+<div class="bottom">
+	<button class="btn btn-full btn-border white" 
+			style="font-weight:bold"
+			(click)="openLogin()">
+			CONNEXION
+	</button>
+</div>
+
+</div >
+

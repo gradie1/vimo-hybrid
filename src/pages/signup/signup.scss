@@ -1,0 +1,38 @@
+page-signup {
+
+	background-color:#fff;
+
+	.block{
+		margin-top:10px;
+		margin-bottom:10px;
+	}
+
+	.block-2{
+		margin-top:20px;
+		margin-bottom:20px;
+	}
+
+	.top{
+		height:30%;
+	}
+
+	.middle{
+		width:100%;
+	}
+
+	.middle form{
+		width:100%;
+	}
+
+	.bottom{
+		position:relative;
+		width:100%;
+	}
+
+	.md .button{
+		margin:50px 12px;
+		box-shadow: 0px 2px 5px rgba(0,0,0,.12), 0px 5px 10px rgba(0,0,0,.16); 
+	}
+
+
+}

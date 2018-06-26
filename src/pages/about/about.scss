@@ -1,0 +1,38 @@
+page-about {
+
+	.block{
+		position:absolute;
+		background-color:#fff;
+		width:100vw;
+		height:100vh;
+	}
+
+	.title{
+		font-size:2em;
+		color:#74002c;
+		padding:10px 10px 50px;
+		text-align:center;
+	}
+
+	.version{
+		color:#74002c;
+	}
+
+	img{
+		width:30%;
+		height:auto;
+		margin-bottom:20px;
+	}
+
+	.subtitle{
+		display:none;
+		font-size:1.1em;
+		color:#74002c;
+		padding: 0 0 50px; 
+	}
+
+	.brand{
+		color:#74002c;
+	}
+
+}

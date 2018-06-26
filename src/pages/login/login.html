@@ -1,0 +1,57 @@
+
+<div class="app flex wrap justify-center align-between">
+
+
+
+<section class="top">
+	<img class="center logo" src="assets/imgs/logo2.png" width="80%" height="auto">	
+</section>
+
+
+
+<section class="middle flex column justify-end align-center" padding>
+
+	<!-- <div class="block" style="color:#747373">
+		Connexion
+	</div> -->
+
+	<form [formGroup]="form">
+
+		<ion-item >
+			<ion-label floating>
+			<ion-icon name="mail"></ion-icon>
+			Email
+			</ion-label>
+			<ion-input type="email" formControlName="email"></ion-input>
+		</ion-item>
+
+		<ion-item >
+			<ion-label floating>
+			<ion-icon name="lock"></ion-icon>
+			Mot de passe
+			</ion-label>
+			<ion-input type="password" formControlName="password"></ion-input>
+		</ion-item>
+
+		<div class="block-2" text-right style="color:#747373" (click)="openReset()">
+			<span >Mot de passe oublié?</span>
+		</div>
+
+		<button  class="btn btn-full btn-gradient text-white shadow-deep" 
+				 (click)="login()">
+			CONNEXION
+		</button>
+
+	</form>
+
+</section>
+
+<section class="bottom">
+	<button class="btn btn-full btn-border white" 
+			style="margin-top:20px;font-weight:bold"
+			(click)="openSignup()">
+			CREER UN COMPTE
+	</button>
+</section>
+
+</div>

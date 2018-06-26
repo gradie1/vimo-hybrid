@@ -1,14 +1,201 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+
+<ion-header no-border class="shadow-1">
+
+  <ion-navbar color="primary">
+       
+
+    <ion-title class="bold">Vimo</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="search()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="showMenu()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+
+
+
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+
+
+
+
+
+
+
+<!-- ITEMS -->
+
+<ion-content >
+
+
+        <div style="position:relative;font-size:0.7em;">
+
+            <ion-item>
+              <ion-label>
+                <ion-icon name="list"></ion-icon>  
+                
+              </ion-label>
+            
+              <ion-select [(ngModel)]="filter">
+                <ion-option  selected
+                (ionSelect)="getItems()">
+                  All
+                </ion-option>
+                <ion-option 
+                *ngFor="let category of categories"
+                value="{{category}}" 
+                  (ionSelect)="selectCategory(category)">
+                  {{category}}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+
+      </div>
+
+
+  
+	<section style="padding:0px 5px 0" >
+
+
+
+		<div class="products flex wrap justify-between " >
+
+
+
+				<div class="product shadow-1" *ngFor="let item of items | async" >
+
+				
+          <span *ngIf="cat && item.category == cat">
+
+
+            <div 
+            (click)="openProduct(item)"
+            class="img cover" 
+            [ngStyle]="{ 'background-image': 'url(' + item.images[0] + ')'}">
+          </div>
+
+          <div class="details">
+            <div class="name " (click)="openProduct(item)">{{item.name}}</div>
+
+            <div class="price flex justify-between align-center" ion-text color="primary" >
+              <span class="bold" (click)="openProduct(item)">
+                {{item.price}} {{item.currency}}
+              </span>
+              <span>
+                {{item.distance}}
+              </span>
+            </div>
+
+        </div>
+
+
+          </span>
+
+
+          <span *ngIf="!cat">
+
+
+            <div 
+            (click)="openProduct(item)"
+            class="img cover" 
+            [ngStyle]="{ 'background-image': 'url(' + item.images[0] + ')'}">
+          </div>
+
+          <div class="details">
+            <div class="name " (click)="openProduct(item)">{{item.name}}</div>
+
+            <div class="price flex justify-between align-center" ion-text color="primary" >
+              <span class="bold" (click)="openProduct(item)">
+                {{item.price}} {{item.currency}}
+              </span>
+              <span>
+                {{item.distance}}
+              </span>
+            </div>
+
+        </div>
+
+
+          </span>
+
+			
+
+			 </div>
+
+
+
+
+
+		</div>
+
+
+
+	</section>
+
+<div class="flex justify-center"
+         style="width:100vw;
+                padding:20px 0;
+                position:fixed;
+                top:45vh;
+                z-index:1"
+      *ngIf="!connected">
+
+      <ion-spinner name="bubbles" color="dark"></ion-spinner>
+
+    </div>
+
+<ion-infinite-scroll (ionInfinite)="moreItems()">
+<ion-infinite-scroll-content
+loadingSpinner="bubbles">  
+
+</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+
+</ion-content>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ion-footer >
+
+	<ion-buttons class="flex justify-between align-center">
+
+	 <div class="btn-icon  flex column justify-center align-center"(click)="openUserArcticles()">
+      	<ion-icon name="ios-archive"></ion-icon>
+      </div>
+
+      <div class="btn-icon  flex column justify-center align-center" (click)="search()">
+      	<ion-icon name="search"></ion-icon>
+      </div>
+
+      <div class="btn-icon add flex justify-center align-center" (click)="publish()">
+      	<ion-icon name="add"></ion-icon>
+      </div>
+
+      <div class="btn-icon  flex column justify-center align-center" (click)="openFavorites()">
+      	<ion-icon name="md-heart-outline"></ion-icon>
+      </div>
+
+      <div class="btn-icon  flex column justify-center align-center" (click)="openProfil()">
+      	<ion-icon name="contact"></ion-icon>
+      </div>
+    
+    </ion-buttons>
+
+</ion-footer>
