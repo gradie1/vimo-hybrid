@@ -4,7 +4,6 @@ import { AddImagesPage } from './add-images';
 
 @NgModule({
   declarations: [
-    AddImagesPage,
   ],
   imports: [
     IonicPageModule.forChild(AddImagesPage),

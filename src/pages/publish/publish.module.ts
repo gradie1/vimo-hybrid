@@ -4,7 +4,6 @@ import { PublishPage } from './publish';
 
 @NgModule({
   declarations: [
-    PublishPage,
   ],
   imports: [
     IonicPageModule.forChild(PublishPage),

@@ -13,11 +13,11 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="content">
 
 
 
-<div class="content">
+<div class="">
 
 	<!-- ARTICLE IMAGES -->
 	<ion-slides pager>
@@ -70,17 +70,22 @@
 			<div class="owner-img cover"
 			     [ngStyle]="{ 'background-image': 'url(' + (owner | async)?.profilImage + ')'}"
 			></div>
-			<div class="owner-name ">{{ (owner | async)?.name }}</div>
+			<div class="owner-name bold">{{ (owner | async)?.name | titlecase }}</div>
 		</div>
 
 		<input #phone style="display:none" value="{{(owner | async)?.phone}}">
 
-		<div class="checkout btn btn-small primary text-white"
+		<div class="checkout btn btn-small primary text-white shadow-1"
 			 *ngIf="(owner | async)?.phone" 
 			 style="margin-right:0"
 			 (click)="contact(phone.value)">
 			 <ion-icon name="basket" ion-text color="light"></ion-icon>
-			 Acheter
+			 
+			 <span
+			 style="padding-left:3px">
+			 	ACHETER
+			 </span>
+			
 			</div>
 
 	</div>

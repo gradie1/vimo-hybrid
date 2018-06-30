@@ -13,7 +13,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 //Firebase
 import { AngularFireDatabase } from 'angularfire2/database';
 
-
+import { Observable } from 'rxjs';
 
 @IonicPage()
 @Component({
@@ -25,6 +25,7 @@ export class SignupPage {
 
   form:FormGroup;
   userId:string;
+  termsLink:string;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -42,6 +43,8 @@ export class SignupPage {
       password2:['',Validators.compose([Validators.required,Validators.minLength(6)])]
     });
 
+    //Get the terms link
+    //this.termsLink = this.db.list('utils/termsLink');
 
   }
 
@@ -120,6 +123,16 @@ export class SignupPage {
   }
 
 
+  openTerms(link){
+    // if(typeof link === 'object'){
+    //   window.open('http://kivubox.com/vimo-termes.html','_system');
+    // }else{
+    //   window.open(this.termsLink,'_system');
+    // }
+
+    window.open('http://kivubox.com/vimo-termes.html','_system');
+
+  }
 
 
   openLogin(){

@@ -50,7 +50,7 @@ page-home {
 
 	.product .name{
 		text-align:left;
-		font-size:1em;
+		font-size:1.1em;
 		font-weight:600;
 		padding:5px 0 ;
 	}
@@ -58,6 +58,10 @@ page-home {
 	.product .price{
 		font-size:1.1em;
 		padding-bottom: 3px;
+	}
+
+	.distance{
+		font-size:0.8em;
 	}
 
 }

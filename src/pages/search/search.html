@@ -28,7 +28,7 @@
 
     </div>
 
-      <!-- <div class="notice light" *ngIf="!hasLike" >
+      <!-- <div class="notice light" *ngIf="query" >
         Les articles que vous aimez s'affichent ici.
       </div> -->
 
@@ -37,9 +37,13 @@
 
      	<div class="item flex justify-start" 
      	
-     	*ngIf="item.name.toString().toLowerCase().includes(query.toString().toLowerCase()) || 
-             item.description.toString().toLowerCase().includes(query.toString().toLowerCase()) ||
-             item.category.toString().toLowerCase().includes(query.toString().toLowerCase())"
+     	*ngIf="(item.name.toString().toLowerCase().includes(query.toString().toLowerCase()) && 
+             query.length > 1) || 
+             (item.description.toString().toLowerCase().includes(query.toString().toLowerCase()) 
+             &&
+             query.length > 1) ||
+             (item.category.toString().toLowerCase().includes(query.toString().toLowerCase()) && 
+             query.length > 1)"
 
      	(click)="openProduct(item)">
 

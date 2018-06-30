@@ -32,8 +32,8 @@ export class ArticlesPage {
               public afAuth: AngularFireAuth,
               public db: AngularFireDatabase) {
 
-    //Check the app version and state
-    this.checkVersion();
+    //Checks if the data is loaded
+    this.checkConnection();
 
   	//Get the user ID
     this.afAuth.authState.subscribe(user => {
@@ -56,7 +56,7 @@ export class ArticlesPage {
 
     this.db.list('products')
     .snapshotChanges()
-    .subscribe(a=>{this.connected = true;)});
+    .subscribe(a=>{this.connected = true;console.log('connected '+this.connected);});
 
   }
 

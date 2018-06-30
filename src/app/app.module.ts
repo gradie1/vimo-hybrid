@@ -10,6 +10,9 @@ import { Camera} from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Network } from '@ionic-native/network';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { IonicStorageModule } from '@ionic/storage';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -30,6 +33,7 @@ import { AddCategoryPage } from '../pages/add-category/add-category';
 import { AddImagesPage } from '../pages/add-images/add-images';
 import { AddPricePage } from '../pages/add-price/add-price';
 import { PublishPage } from '../pages/publish/publish';
+import { EditArticlePage } from '../pages/edit-article/edit-article';
 import { ProductPage } from '../pages/product/product';
 import { MenuPage } from '../pages/menu/menu';
 import { FavouritesPage } from '../pages/favourites/favourites';
@@ -67,6 +71,7 @@ import { AuthProvider } from '../providers/auth/auth';
     AddPricePage,
     PublishPage,
     ProductPage,
+    EditArticlePage,
     MenuPage,
     FavouritesPage,
     EditProfilPage,
@@ -82,7 +87,8 @@ import { AuthProvider } from '../providers/auth/auth';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    IonicStorageModule.forRoot()
 
   ],
   bootstrap: [IonicApp],
@@ -118,7 +124,9 @@ import { AuthProvider } from '../providers/auth/auth';
     Camera,
     AngularFireStorage,
     Geolocation,
-    Network
+    Network,
+    Diagnostic,
+    AdMobFree
   ]
 })
 export class AppModule {

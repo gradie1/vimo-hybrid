@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PopoverController, AlertController } from 'ionic-angular';
 
+import { Diagnostic } from '@ionic-native/diagnostic';
+
 import { Network } from '@ionic-native/network';
 
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -28,6 +30,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Geolocation } from '@ionic-native/geolocation';
+
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
+
 
 @Component({
   selector: 'page-home',
@@ -65,6 +70,7 @@ export class HomePage {
                       ];
 
   items : Observable<any>;
+  itemSize : Observable<any>;
   notLoad = true;
   cat:any;
   count = 20;
@@ -80,14 +86,22 @@ export class HomePage {
               private alertCtrl: AlertController,
               public db: AngularFireDatabase,
               private geolocation: Geolocation,
-              private network: Network
+              private network: Network,
+              private diagnostic: Diagnostic,
+              public admob: AdMobFree
               ) {
 
     //Check the app version and state
     this.checkVersion();
 
-    //Check internet connection
+    //Checks if the data is loaded
     this.checkConnection();
+
+    //Check if the location is enabled
+    this.checkLocation();
+
+    //Show the admob banner
+    this.showBanner();
 
     this.categories.sort();
     
@@ -111,11 +125,33 @@ export class HomePage {
 
   }
 
+  //From ADMOB
+  showBanner() {
+ 
+        let bannerConfig: AdMobFreeBannerConfig = {
+            autoShow: true,
+            id: 'ca-app-pub-4144718439269057~3652124575'
+        };
+ 
+        this.admob.banner.config(bannerConfig);
+ 
+        this.admob.banner.prepare().then(() => {
+            // success
+        }).catch(e => console.log(e));
+ 
+    }
+
+
+
   checkConnection(){
 
     this.db.list('products')
     .snapshotChanges()
-    .subscribe(a=>{this.connected = true;console.log('connected '+this.connected)});
+    .subscribe(a=>{
+      this.connected = true; 
+      console.log('connected '+this.connected);
+    });
+
 
   }
 
@@ -144,6 +180,7 @@ export class HomePage {
    this.position.lat = resp.coords.latitude;
    this.position.lng = resp.coords.longitude;
   }).catch((error) => {
+    this.locationAlert();
     console.log('Error getting location', error);
   });
 
@@ -177,7 +214,7 @@ export class HomePage {
 
     this.cat = null;
 
-    this.items = this.db.list('products/',ref => ref.orderByChild('active').equalTo(true).limitToFirst(this.count)  )
+    this.items = this.db.list('products/',ref => ref.orderByChild('active').equalTo(true).limitToLast(this.count)  )
     .snapshotChanges().pipe(
       map(changes => 
         changes.map(c => ({ key: c.payload.key,distance:this.getDistance(c.payload.val()), ...c.payload.val() }))
@@ -186,16 +223,22 @@ export class HomePage {
 
   }
 
-  moreItems(){
+  moreItems(infiniteScroll){
+
     this.count+=20;
-    this.items = this.db.list('products/',ref => ref.orderByChild('active').equalTo(true).limitToFirst(this.count)  )
+    
+    this.items = this.db.list('products/',ref => ref.orderByChild('active').equalTo(true).limitToLast(this.count)  )
     .snapshotChanges().pipe(
       map(changes => 
         changes.map(c => ({ key: c.payload.key,distance:this.getDistance(c.payload.val()), ...c.payload.val() }))
       )
     );
 
+    // if(this.count>this.itemSize.length && this.itemSize.length != undefined){
+    //   infiniteScroll.complete();
+    // }
 
+    //infiniteScroll.complete();
 
   }
 
@@ -265,9 +308,52 @@ export class HomePage {
   }
 
 
+  //Check if the location is enabled
+  checkLocation(){
+
+    this.diagnostic.isLocationAvailable()
+    .then(available=>{
+
+      if(!available){
+
+        this.locationAlert();
+
+      }
+
+    })
+    .catch(e=>{
+
+      //this.utils.Toast("Erreur de localisation");
+      //alert(JSON.stringify(e));
+
+    });
+
+  }
 
 
 
+
+
+  //Location
+  locationAlert(){
+
+    let alert = this.alertCtrl.create({
+    title: 'Géolocalisation',
+    message: 'Activez votre localisation pour voir la position des produits',
+    buttons: [
+      {
+        text: 'Ok',
+        handler: () => {
+          
+          this.diagnostic.switchToLocationSettings();
+
+        }
+      }
+    ]
+  });
+  alert.present();
+
+  }
 
 
 

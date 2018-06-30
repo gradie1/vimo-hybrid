@@ -58,6 +58,13 @@ export class PublishPage {
   			return;
   		}
 
+      if(this.position && this.latLng == ''){
+
+        this.utils.Toast('Veuillez activer la Gélocalisation');
+        return;
+
+      }
+
   		//DATA
   		this.data.name = this.name;
   		this.data.description = this.description;

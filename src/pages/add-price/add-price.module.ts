@@ -4,7 +4,6 @@ import { AddPricePage } from './add-price';
 
 @NgModule({
   declarations: [
-    AddPricePage,
   ],
   imports: [
     IonicPageModule.forChild(AddPricePage),

@@ -26,6 +26,7 @@ export class FavouritesPage {
   user : any;
   hasLike : boolean ;
   position : any = {};
+  connected=false;
 
   constructor(public navCtrl: NavController,
   			      public navParams: NavParams,
@@ -33,6 +34,9 @@ export class FavouritesPage {
               public db: AngularFireDatabase,
               private geolocation: Geolocation,
               public utils: UtilsProvider) {
+
+    //Checks if the data is loaded
+    this.checkConnection();
 
   	//Get the user ID
     this.afAuth.authState.subscribe(user => {
@@ -51,6 +55,16 @@ export class FavouritesPage {
 
 
   }
+
+
+  checkConnection(){
+
+    this.db.list('products')
+    .snapshotChanges()
+    .subscribe(a=>{this.connected = true;console.log('connected '+this.connected)});
+
+  }
+
 
   isFav(likes){
 

@@ -52,6 +52,12 @@ export class SearchPage {
 
   }
 
+  openProduct(item:any){
+
+    this.navCtrl.push(ProductPage,{data:{item}});
+
+  }
+
   //Get the distance between the user location and the product location
   getDistance(product){
 

@@ -7,6 +7,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Storage } from '@ionic/storage';
 
 //Providers
 import { UtilsProvider } from '../../providers/utils/utils';
@@ -24,7 +25,8 @@ import { ResetPasswordPage } from '../reset-password/reset-password';
 })
 export class ProfilPage {
 
-  user:  Observable<{}>;
+  userFire:  Observable<{}>;
+  user:any = {};
   userId:string;
   placeholder = 'assets/imgs/placeholder.png';
 
@@ -37,7 +39,12 @@ export class ProfilPage {
           private storage: AngularFireStorage,
   			  public afAuth: AngularFireAuth,
           public utils: UtilsProvider,
-          private camera: Camera) {
+          private camera: Camera,
+          private localStorage: Storage) {
+
+    //Get the user informations from the local storage
+    this.getUserInfo();
+
 
   	//Get the user ID
   	this.afAuth.authState.subscribe(user => {
@@ -48,6 +55,7 @@ export class ProfilPage {
       	//Get user data
 		    this.getItemsList();
 
+
       };
 
     });
@@ -55,10 +63,34 @@ export class ProfilPage {
   }
 
 
+  getUserInfo(){
+
+    this.localStorage.get('name').then((val)=>{this.user.name = val});
+    this.localStorage.get('phone').then((val)=>{this.user.phone = val});
+    this.localStorage.get('email').then((val)=>{this.user.email = val});
+
+  }
+
+
   getItemsList(){
 
     if (!this.userId) return;
-    this.user = this.db.object('users/'+this.userId).valueChanges();
+
+    this.userFire = this.db.object('users/'+this.userId).valueChanges();
+
+    this.db.object('users/'+this.userId)
+    .snapshotChanges()
+    .subscribe(snap=>{
+
+      let data:any = snap.payload.val();
+
+      this.localStorage.set('name', data.name);
+      this.localStorage.set('phone', data.phone);
+      this.localStorage.set('email', data.email);
+
+      this.getUserInfo();
+
+    });
 
   }
   

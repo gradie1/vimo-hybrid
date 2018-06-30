@@ -60,7 +60,7 @@ export class MenuPage {
   }
 
   about(){
-    this.navCtrl.push(AboutPage);
+    this.appCtrl.getRootNav().push(AboutPage);
   }
 
   handleStates(){

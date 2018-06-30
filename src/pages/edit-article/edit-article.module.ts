@@ -4,7 +4,6 @@ import { EditArticlePage } from './edit-article';
 
 @NgModule({
   declarations: [
-    EditArticlePage,
   ],
   imports: [
     IonicPageModule.forChild(EditArticlePage),

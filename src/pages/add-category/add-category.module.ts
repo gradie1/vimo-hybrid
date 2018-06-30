@@ -4,7 +4,6 @@ import { AddCategoryPage } from './add-category';
 
 @NgModule({
   declarations: [
-    AddCategoryPage,
   ],
   imports: [
     IonicPageModule.forChild(AddCategoryPage),

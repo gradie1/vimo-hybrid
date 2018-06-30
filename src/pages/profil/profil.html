@@ -13,19 +13,19 @@
 		<div class="">
 
 			<div class="name bold">
-				{{ (user | async)?.name | titlecase}} 
+				{{ user.name | titlecase }} 
 				<ion-spinner *ngIf="!user" name="bubbles"></ion-spinner> 
 			</div>
 
 			<span>
-				{{ (user | async)?.email }}
+				{{ user.email}}
 				
 			</span>
 
 		</div>
 
 		<div class="img" 
-			 [ngStyle]="{ 'background-image': 'url(' + (user | async)?.profilImage + ')'}"
+			 [ngStyle]="{ 'background-image': 'url(' + (userFire | async)?.profilImage + ')'}"
 			 (click)="selectImage()">
 
 		</div>
@@ -41,7 +41,7 @@
 
 			<span style="padding-left:5px;color:#222;" 
 				  >
-				{{ (user | async)?.name | titlecase}}
+				{{ user.name | titlecase}}
 				<ion-spinner *ngIf="!user" name="bubbles"></ion-spinner>
 			</span>
 
@@ -57,7 +57,7 @@
 
 			<div style="padding-left:5px;color:#222;"
 				 >
-				{{ (user | async)?.phone }}
+				{{ user.phone }}
 				<ion-spinner *ngIf="!user" name="bubbles"></ion-spinner>
 			</div>
 

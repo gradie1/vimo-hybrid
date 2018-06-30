@@ -63,6 +63,10 @@ export class ProductPage {
 
   checkLike(){
 
+    if(!this.user){
+      return;
+    }
+
     this.db.object('products/'+this.item.key+'/likes/'+this.user.uid)
     .snapshotChanges().subscribe((snap)=>{
         
@@ -78,12 +82,20 @@ export class ProductPage {
 
   unlike(){
 
+    if(!this.user){
+      return;
+    }
+
     this.db.object('products/'+this.item.key+'/likes/'+this.user.uid).remove()
     this.liked = false;
 
   }
 
   like(event,key){
+
+    if(!this.user){
+      return;
+    }
     
     this.db.object('products/'+key+'/likes/'+this.user.uid)
     .set(true).then(()=>{
